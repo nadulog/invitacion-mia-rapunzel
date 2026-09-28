@@ -41,9 +41,9 @@
 
     <section class="piece guests" aria-label="Invitación personalizada">
       <img src="assets/invitados.png" alt="Esta invitación fue creada especialmente para vos">
-      <div class="guests__data">
-        <p id="guestName">Invitado especial</p>
-        <p id="guestSeats">Tenés <strong>1 lugar</strong> reservado</p>
+      <div class="guest-data" aria-live="polite">
+        <p class="guest-data__names" id="nombres-invitados"></p>
+        <p class="guest-data__passes" id="cantidad-lugares"></p>
       </div>
     </section>
 
@@ -92,7 +92,7 @@
 
     <section class="piece">
       <img src="assets/confirmacion.png" alt="Confirmá tu asistencia antes del 21 de octubre">
-      <button id="rsvpBtn" class="hotspot confirmation-hotspot" aria-label="Confirmar asistencia"><span>Confirmar asistencia</span></button>
+      <a id="boton-confirmar" class="hotspot confirmation-hotspot" href="https://bloomdate-rsvp.netlify.app" target="_blank" rel="noopener noreferrer" aria-label="Confirmar asistencia"><span>Confirmar asistencia</span></a>
     </section>
 
     <section class="piece"><img src="assets/cierre.png" alt="Te espero para vivir una noche mágica. Mía"></section>
@@ -122,5 +122,6 @@
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="script.js"></script>
+  <script src="invitation-personalization.js"></script>
 </body>
 </html>

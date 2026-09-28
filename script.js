@@ -82,7 +82,7 @@ document.querySelector('img[src="assets/fotos.png"]').closest('.piece').remove()
 document.querySelector('img[src="assets/bloomkeep-portada.jpg"]').closest('.piece').remove();
 
 // Cierre: BloomKeep, confirmacion, Te espero y footer.
-document.querySelector('img[src="assets/cierre.png"]').closest('.piece').before(document.querySelector('#rsvpBtn').closest('.piece'));
+document.querySelector('img[src="assets/cierre.png"]').closest('.piece').before(document.querySelector('#boton-confirmar').closest('.piece'));
 
 function showToast(message){
   toast.textContent = message;
@@ -115,12 +115,6 @@ audioToggle.addEventListener('click', async () => {
   audioToggle.classList.add('pulse');
   setTimeout(()=>audioToggle.classList.remove('pulse'),700);
 });
-
-const params = new URLSearchParams(location.search);
-const guestName = params.get('nombre') || params.get('invitado');
-const seats = Math.max(1, Number.parseInt(params.get('lugares') || '1',10) || 1);
-if(guestName) document.querySelector('#guestName').textContent = guestName;
-document.querySelector('#guestSeats').innerHTML = `Tenés <strong>${seats} ${seats === 1 ? 'lugar' : 'lugares'}</strong> ${seats === 1 ? 'reservado' : 'reservados'}`;
 
 function updateCountdown(){
   const distance = Math.max(0,eventStart-Date.now());
@@ -260,11 +254,4 @@ document.addEventListener('keydown',e => { if(e.key==='Escape') document.querySe
 document.querySelector('#copyAlias').addEventListener('click',async () => {
   try { await navigator.clipboard.writeText('mmiamb'); showToast('Alias copiado: mmiamb'); }
   catch { showToast('Alias: mmiamb'); }
-});
-
-document.querySelector('#rsvpBtn').addEventListener('click',async () => {
-  const who = guestName || 'Invitado/a';
-  const text = `Hola, soy ${who}. Confirmo mi asistencia a los XV de Mía el 21/11/2026. Lugares reservados: ${seats}.`;
-  if(navigator.share){ try { await navigator.share({title:'Confirmación XV de Mía',text}); return; } catch(e){ if(e.name==='AbortError') return; } }
-  window.open(`https://wa.me/?text=${encodeURIComponent(text)}`,'_blank','noopener');
 });
