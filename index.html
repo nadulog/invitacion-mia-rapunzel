@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#170d2d">
+  <meta name="description" content="Invitación a los XV de Mía — 21 de noviembre de 2026">
+  <title>Mía · Mis XV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="locked">
+  <div id="intro" class="intro" role="dialog" aria-modal="true" aria-label="Ingreso a la invitación">
+    <img src="assets/intro.png" alt="Mía, mis XV. Elegí cómo querés ingresar">
+    <button class="hotspot intro__music" data-enter="music" aria-label="Ingresar con música"><span>Ingresar con música</span></button>
+    <button class="hotspot intro__silent" data-enter="silent" aria-label="Ingresar sin música"><span>Ingresar sin música</span></button>
+  </div>
+
+  <main id="invitation" class="invitation" aria-hidden="true">
+    <section class="piece"><img src="assets/portada.png" alt="Mis XV, Mía, 21 de noviembre de 2026"></section>
+
+    <section class="piece guests" aria-label="Invitación personalizada">
+      <img src="assets/invitados.png" alt="Esta invitación fue creada especialmente para vos">
+      <div class="guests__data">
+        <p id="guestName">Invitado especial</p>
+        <p id="guestSeats">Tenés <strong>1 lugar</strong> reservado</p>
+      </div>
+    </section>
+
+    <section class="piece countdown" aria-label="Cuenta regresiva">
+      <img src="assets/cuenta-regresiva-limpia.png" alt="Falta muy poco">
+      <div class="countdown__grid" aria-live="polite">
+        <div><strong id="days">00</strong></div>
+        <div><strong id="hours">00</strong></div>
+        <div><strong id="minutes">00</strong></div>
+        <div><strong id="seconds">00</strong></div>
+      </div>
+    </section>
+
+    <section id="dateScratch" class="piece scratch-card" aria-label="Raspá con el dedo para descubrir la fecha y hora">
+      <img src="assets/fecha.png" alt="Sábado 21 de noviembre de 2026, de 21:00 a 05:30">
+      <canvas id="scratchCanvas" width="942" height="1674" aria-hidden="true"></canvas>
+      <button id="calendarBtn" class="hotspot calendar-hotspot" aria-label="Agregar evento al calendario" disabled><span>Agregar al calendario</span></button>
+    </section>
+
+    <section class="piece">
+      <img src="assets/ubicacion.png" alt="Cómo llegar: Fiori, Escobar">
+      <button class="hotspot location-hotspot" data-open="locationModal" aria-label="Ver ubicación"><span>Ver ubicación</span></button>
+    </section>
+
+    <section class="piece"><img src="assets/dress-code.png" alt="Dress code elegante sport. Evitá los colores lila, plateado y dorado"></section>
+
+    <section class="piece">
+      <img src="assets/regalos.png" alt="Regalos por transferencia">
+      <button class="hotspot gift-hotspot" data-open="giftModal" aria-label="Ver datos para transferencia"><span>Ver datos</span></button>
+    </section>
+
+    <section class="piece"><img src="assets/fotos.png" alt="Mis recuerdos"></section>
+    <section class="piece"><img src="assets/fotos-poquito.png" alt="Un poquito de mí"></section>
+
+    <section class="piece">
+      <img src="assets/musica.png" alt="Música: ¿Qué canción no puede faltar?">
+      <a class="hotspot spotify-hotspot" href="https://open.spotify.com/playlist/0xLpmeORbcausblxV0KMK5?si=CVG8ysnASWKhseC9ojquAQ&amp;utm_source=whatsapp&amp;pt=94b61d7a95c082f35d0d0f09445b6cc5&amp;pi=XMEVEmiRQtS4A" target="_blank" rel="noopener" aria-label="Sugerir canción en Spotify"><span>Sugerir canción</span></a>
+    </section>
+
+    <section class="piece"><img src="assets/bloomkeep-portada.jpg" alt="Mía, una noche mágica para recordar"></section>
+
+    <section class="piece">
+      <img src="assets/bloomkeep.png" alt="BloomKeep: compartí las fotos y mensajes de esta noche">
+      <a class="hotspot bloomkeep-hotspot" href="https://app.bloomkeep.site/mia-xv" target="_blank" rel="noopener" aria-label="Ingresar a BloomKeep"><span>Ingresar a BloomKeep</span></a>
+    </section>
+
+    <section class="piece">
+      <img src="assets/confirmacion.png" alt="Confirmá tu asistencia antes del 21 de octubre">
+      <button id="rsvpBtn" class="hotspot confirmation-hotspot" aria-label="Confirmar asistencia"><span>Confirmar asistencia</span></button>
+    </section>
+
+    <section class="piece"><img src="assets/cierre.png" alt="Te espero para vivir una noche mágica. Mía"></section>
+    <footer class="piece footer"><img src="assets/footer.png" alt="Hecho con amor por BloomDate. Todos los derechos reservados"></footer>
+  </main>
+
+  <button id="audioToggle" class="audio-toggle" aria-label="Pausar música" aria-pressed="true" hidden>
+    <span class="audio-toggle__bars" aria-hidden="true"><i></i><i></i><i></i></span>
+  </button>
+  <audio id="music" src="assets/musica.mp3" loop preload="auto"></audio>
+
+  <div id="locationModal" class="modal" role="dialog" aria-modal="true" aria-label="Cómo llegar" hidden>
+    <div class="modal__card">
+      <img src="assets/ubicacion-modal.png" alt="Cómo llegar a Fiori, Escobar">
+      <a class="hotspot modal-location-link" href="https://maps.app.goo.gl/K8D7f1k3N7HCKYCA7?g_st=aw" target="_blank" rel="noopener" aria-label="Abrir Google Maps"><span>Abrir Google Maps</span></a>
+      <button class="hotspot modal-close modal-location-close" data-close aria-label="Cerrar ubicación"><span>Cerrar</span></button>
+    </div>
+  </div>
+
+  <div id="giftModal" class="modal" role="dialog" aria-modal="true" aria-label="Datos para transferencia" hidden>
+    <div class="modal__card">
+      <img src="assets/regalos-modal.png" alt="Alias mmiamb. Titular Mia Belen Batistuta">
+      <button id="copyAlias" class="hotspot modal-copy" aria-label="Copiar alias mmiamb"><span>Copiar alias</span></button>
+      <button class="hotspot modal-close modal-gift-close" data-close aria-label="Cerrar datos de transferencia"><span>Cerrar</span></button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
